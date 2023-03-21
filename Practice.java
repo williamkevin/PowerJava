@@ -2,13 +2,18 @@ import java.util.Scanner;
 
 public class Practice {
     public static void main(String[] args) {
-
+        System.out.print("요일을 입력하세요(Mon, Tue, Wed, Thu, Fri, Sat, Sun: ");
         Scanner sc = new Scanner(System.in);
+        String day = sc.next();
 
-        double a1 = sc.nextDouble();
-        double a2 = sc.nextDouble();
-        double a3 = sc.nextDouble();
+        var output = ' ';
 
-        System.out.println(a1 + a2 + a3);
+        switch (day) {
+            case "Mon", "Tue", "Wed", "Thu", "Fri" -> output = "주중"; break;
+            case "Sat", "Sun" -> output = "주말"; break;
+            default -> System.out.println("error");
+        }
+
+        System.out.println(day + "은 " + output + "입니다.");
     }
 }
