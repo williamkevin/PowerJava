@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8d31ba75-8fd3-4315-9743-7cce6e647e59" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ch06_상속.md" beforeDir="false" afterPath="$PROJECT_DIR$/Ch06_상속.md" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2N0O6wJPQwGQJUXiBbOD7FO3jxg" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/kevinliam/Desktop/Development/PowerJava",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
+  }
+}]]></component>
+  <component name="RunManager" selected="Java Scratch.ElectricCar">
+    <configuration type="Java Scratch">
+      <option name="MAIN_CLASS_NAME" value="Practice2" />
+      <module name="PowerJava" />
+      <option name="SCRATCH_FILE_URL" value="file://$PROJECT_DIR$/Practice2.java" />
+      <shortenClasspath name="NONE" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ElectricCar" type="Java Scratch" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ElectricCar" />
+      <module name="PowerJava" />
+      <option name="SCRATCH_FILE_URL" value="file://$PROJECT_DIR$/문제/ElectricCar.java" />
+      <shortenClasspath name="NONE" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Java Scratch.ElectricCar" />
+    </list>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8d31ba75-8fd3-4315-9743-7cce6e647e59" name="Changes" comment="" />
+      <created>1678797360699</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1678797360699</updated>
+      <workItem from="1678797362798" duration="1000" />
+      <workItem from="1678797367236" duration="2636000" />
+      <workItem from="1678800944695" duration="5934000" />
+      <workItem from="1679018286793" duration="6055000" />
+      <workItem from="1679275545045" duration="4274000" />
+      <workItem from="1679287458412" duration="7712000" />
+      <workItem from="1679297973066" duration="1053000" />
+      <workItem from="1679313346798" duration="5514000" />
+      <workItem from="1679360119785" duration="631000" />
+      <workItem from="1679369607752" duration="2056000" />
+      <workItem from="1679377624620" duration="380000" />
+      <workItem from="1679403365997" duration="16000" />
+      <workItem from="1679492334018" duration="1180000" />
+      <workItem from="1679493753433" duration="1554000" />
+      <workItem from="1679495316612" duration="2000" />
+      <workItem from="1679643054822" duration="2535000" />
+      <workItem from="1679645597183" duration="863000" />
+      <workItem from="1679646589141" duration="134000" />
+      <workItem from="1679646758622" duration="5000" />
+      <workItem from="1679895422332" duration="923000" />
+      <workItem from="1680240539112" duration="8733000" />
+      <workItem from="1680265705786" duration="404000" />
+      <workItem from="1680499307237" duration="1334000" />
+      <workItem from="1680784629050" duration="6496000" />
+      <workItem from="1680793416510" duration="2069000" />
+      <workItem from="1680836665468" duration="438000" />
+      <workItem from="1680837106971" duration="2461000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
