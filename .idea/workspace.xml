@@ -7,9 +7,7 @@
     <list default="true" id="8d31ba75-8fd3-4315-9743-7cce6e647e59" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ch06_상속.md" beforeDir="false" afterPath="$PROJECT_DIR$/Ch06_상속.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Example/Circle.class" beforeDir="false" afterPath="$PROJECT_DIR$/Example/Circle.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Example/Rectangle.class" beforeDir="false" afterPath="$PROJECT_DIR$/Example/Rectangle.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Example/Shape.class" beforeDir="false" afterPath="$PROJECT_DIR$/Example/Shape.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +108,10 @@
       <workItem from="1680837106971" duration="2461000" />
       <workItem from="1680842143422" duration="673000" />
       <workItem from="1680860076998" duration="6021000" />
-      <workItem from="1680930650625" duration="3760000" />
+      <workItem from="1680930650625" duration="5000000" />
+      <workItem from="1681010592902" duration="1000" />
+      <workItem from="1681016251971" duration="766000" />
+      <workItem from="1681101696941" duration="167000" />
     </task>
     <servers />
   </component>
