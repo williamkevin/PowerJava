@@ -5,11 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8d31ba75-8fd3-4315-9743-7cce6e647e59" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Ch08_자바 API 패키지, 예외 처리, 묘듈.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Memo.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ch07_추상 클래스, 인터페이스, 중첩 클래스.md" beforeDir="false" afterPath="$PROJECT_DIR$/Ch07_추상 클래스, 인터페이스, 중첩 클래스.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Example/Circle.class" beforeDir="false" afterPath="$PROJECT_DIR$/Example/Circle.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Example/Rectangle.class" beforeDir="false" afterPath="$PROJECT_DIR$/Example/Rectangle.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Example/Shape.class" beforeDir="false" afterPath="$PROJECT_DIR$/Example/Shape.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Example/Employee.class" beforeDir="false" afterPath="$PROJECT_DIR$/Example/Employee.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +132,11 @@
       <workItem from="1681573373001" duration="761000" />
       <workItem from="1681574137785" duration="45000" />
       <workItem from="1681574185225" duration="370000" />
-      <workItem from="1681578801669" duration="6840000" />
+      <workItem from="1681578801669" duration="6974000" />
+      <workItem from="1681619563212" duration="2927000" />
+      <workItem from="1681664367852" duration="1371000" />
+      <workItem from="1681707672243" duration="2360000" />
+      <workItem from="1681839286135" duration="6369000" />
     </task>
     <servers />
   </component>
