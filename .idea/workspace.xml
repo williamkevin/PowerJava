@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8d31ba75-8fd3-4315-9743-7cce6e647e59" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Ch08_자바 API 패키지, 예외 처리, 묘듈.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Memo.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ps/LightYear.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ch07_추상 클래스, 인터페이스, 중첩 클래스.md" beforeDir="false" afterPath="$PROJECT_DIR$/Ch07_추상 클래스, 인터페이스, 중첩 클래스.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Example/Circle.class" beforeDir="false" afterPath="$PROJECT_DIR$/Example/Circle.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Example/Employee.class" beforeDir="false" afterPath="$PROJECT_DIR$/Example/Employee.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +47,7 @@
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
 }</component>
-  <component name="RunManager" selected="Java Scratch.ElectricCar">
+  <component name="RunManager" selected="Java Scratch.LightYear">
     <configuration type="Java Scratch">
       <option name="MAIN_CLASS_NAME" value="Practice2" />
       <module name="PowerJava" />
@@ -61,10 +57,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ElectricCar" type="Java Scratch" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ElectricCar" />
-      <module name="PowerJava" />
-      <option name="SCRATCH_FILE_URL" value="file://$PROJECT_DIR$/문제/ElectricCar.java" />
+    <configuration name="LightYear" type="Java Scratch" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="LightYear" />
+      <option name="SCRATCH_FILE_URL" value="file://$PROJECT_DIR$/ps/LightYear.java" />
       <shortenClasspath name="NONE" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -84,7 +79,7 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Java Scratch.ElectricCar" />
+      <item itemvalue="Java Scratch.LightYear" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -138,6 +133,15 @@
       <workItem from="1681707672243" duration="2360000" />
       <workItem from="1681839286135" duration="6369000" />
       <workItem from="1681866468475" duration="54000" />
+      <workItem from="1681891488239" duration="153000" />
+      <workItem from="1681893752042" duration="26000" />
+      <workItem from="1681964044649" duration="2000" />
+      <workItem from="1681965519128" duration="10000" />
+      <workItem from="1682078894223" duration="789000" />
+      <workItem from="1682080029082" duration="18000" />
+      <workItem from="1682080050075" duration="40000" />
+      <workItem from="1682080092644" duration="12000" />
+      <workItem from="1682080107328" duration="277000" />
     </task>
     <servers />
   </component>
