@@ -1,45 +1,58 @@
-import java.util.*;
+// 2022440025 김세원
 
-public class ExceptionTest {
+import java.awt.*; 
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import javax.swing.*;
+
+public class CheckBoxButton extends JFrame {
+    public CheckBoxButton() {
+        setTitle("CheckBoxDemo"); // 제목 설정
+        setLayout(new FlowLayout()); // 레이아웃 설정
+
+        JLabel label = new JLabel(); // JLabel 객체를 생성
+        JCheckBox checkbox1 = new JCheckBox("엔진 오일 교환"); // 4가지 체크 버튼 생성
+        JCheckBox checkbox2 = new JCheckBox("자동 변속기 오일 교환");
+        JCheckBox checkbox3 = new JCheckBox("에어컨 필터 교환");
+        JCheckBox checkbox4 = new JCheckBox("타이어 교환");
+
+        add(checkbox1); // 체크 버튼을 프레임에 추가
+        add(checkbox2);
+        add(checkbox3);
+        add(checkbox4);
+        add(label);
+
+        ItemListener itemListener = new ItemListener() { // 선택한 체크 박스의 가격을 모두 더하는 로직
+            public void itemStateChanged(ItemEvent e) {
+                int total = 0;
+                if (checkbox1.isSelected()) {
+                    total += 45000; 
+                }
+                if (checkbox2.isSelected()) {
+                    total += 80000; 
+                }
+                if (checkbox3.isSelected()) {
+                    total += 30000; 
+                }
+                if (checkbox4.isSelected()) {
+                    total += 100000; 
+                }
+                label.setText("현재까지의 가격은 " + total + "입니다."); // 현재까지의 가격 출력
+            }
+        };
+
+        checkbox1.addItemListener(itemListener); // 체크 버튼마다 가격 더하는 로직 적용
+        checkbox2.addItemListener(itemListener);
+        checkbox3.addItemListener(itemListener);
+        checkbox4.addItemListener(itemListener);
+
+        setSize(500, 150); // 크기 설정
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // 닫기 버튼 설정
+        setVisible(true); // 보이기 설정
+    }
+
     public static void main(String[] args) {
-        int num;
-        String input, upperCase;
-        Scanner sc = new Scanner(System.in);
-        input = sc.next();
-
-        upperCase = input.toUpperCase();
-        System.out.println(upperCase);
-
-        int[] count = new int[26];
-        for (int i = 0; i < input.length(); i++) {
-            char ch = input.charAt(i);
-            try {
-                count[ch - 'A']++;
-            } catch (ArrayIndexOutOfBoundsException e) {
-                System.out.println("ArrayIndexOutOfBoundException 발생!");
-                System.exit(0);
-            }
-        }
-
-        for (int i = 0; i < count.length; i++) {
-            if (count[i] > 0) {
-                System.out.println((char)(i + 'A') + ": " + count[i] + "번");
-            }
-        }
-
-        // try {
-        //     int num = Integer.parseInt("ABC");
-        //     System.out.println(num);
-        // } catch (NumberFormatException e) {
-        //     System.out.println("NumberFormat 예외 발생");
-        // }
+        new CheckBoxButton();
+        System.out.println("2022440025 김세원");
     }
 }
-
-// 입력과 출력이 다음과 같은 코드를 짜
-// A B A
-// A: 2번
-// B: 1번
-// ArrayIndexOutOfBoundException 발생!
-
-// try 구문을 반드시 사용해
