@@ -351,3 +351,30 @@ public class MapTest {
     }
 }
 ```
+
+### Map의 모든 요소 방문하기
+
+- Map은 Collection을 구현하지 않는다.
+
+```java
+// 1. for-each statement and keySet()
+for (String key: map.keySet())
+    System.out.println("key=" + key +", value=" + value);
+
+// 2. 변수 추론 타입
+for (var key: map.keySet()) {
+    System.out.println("key=" + key + ", value=" + value);
+}
+
+// 3. 반복자
+Iterator<String> it = map.keySet().iterator();
+while(it.hasNext()) {
+    String key = it.next();
+    System.out.println("key=" + key + ", value=" + map.get(key));
+}
+
+// 4. 스트림 라이브러리
+map.forEach((key, value) -> {
+    System.out.println("key=" + key + ", value=" + value);
+})
+```
