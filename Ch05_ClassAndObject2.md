@@ -9,7 +9,7 @@
 - 가비지 컬렉션(garbage collection): 히프 메모리에서 필요 없는 객체를 찾아 지우는 자동 메모리 삭제 시스템
 - 참조하는 변수가 없는 객체는 가비지 컬렉션의 후보다.
 
-```
+```java
 Television tv1 = new Television();
 Television tv2 = new Television();
 
