@@ -84,7 +84,7 @@ public class Practice {
 - Java에는 내장된 문자열 자료형이 없다.
 - String 클래스: 문자열을 나타내는 자료형
 
-```
+```java
 String s1 = "Hello";
 String s2 = "World¡";
 ```
@@ -96,19 +96,19 @@ String s2 = "World¡";
 - 자동적인 형변환
 
 컴퓨터에서는 정수 계산 하드웨어와 실수 계산 하드웨어는 완전히 다르기 때문에 산술적인 연산을 하기 전에 피연산자의 타입을 통일해야 한다.
-수식을 계산할 때 가장 범위가 넓은 피연산자의 타입으로 변환한다. 
+수식을 계산할 때 가장 범위가 넓은 피연산자의 타입으로 변환한다.
 byte 수가 클수록 범위가 넓다. 정수 < 실수.
 byte -> short, char -> int -> long -> float -> double
 
-````
+```java
 double sum = 1.3 + 12; // 12는 12.0으로 변환된다. 
-````
+```
 
 - 강제적인 형변환
 
 변환하려는 값의 앞에 원하는 자료형을 적는다.
 
-```
+```java
 int x =3;
 double y = (double) x;
 ```
@@ -154,7 +154,7 @@ public class Practice {
 - Scanner 객체를 이용하여 바이트들을 정수나 실수, 문자열로 변환한다.
 - nextInt()를 호출하여 키보드에서 받은 바이트들을 정수로 변환한다.
 
-```
+```java
 import java.util.Scannar;
 Scanner sc = new Scanner(System.in);
 
@@ -163,7 +163,7 @@ int x = sc.nextInt()
 
 예제 2-4 사용자로부터 입력받은 두 수를 받아서 더하기
 
-```
+```java
 import java.util.Scanner;
 
 public class Practice {
