@@ -378,3 +378,11 @@ map.forEach((key, value) -> {
     System.out.println("key=" + key + ", value=" + value);
 })
 ```
+
+## 13.8 Queue
+
+## 13.9 Collections 클래스
+
+### 섞기
+
+### 탐색
