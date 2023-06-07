@@ -270,6 +270,99 @@ public class EventTest5 extends JFrame {
 
 ## 10.3 스윙 컴포넌트의 이벤트
 
+- 거의 모든 스윙 컴포넌트들이 다양한 이벤트를 발생한다.
+- 스윙 컴포넌트가 발생하는 이벤트는 모든 컴포넌트가 공통적으로 지원하는 저수준 이벤트와 일부 컴포넌트만 지원하는 의미적 이벤트로 나눌 수 있다.
+
+### 저수준 이벤트
+
+- 모든 컴포넌트에서 발생한다.
+- 마우스나 키보드로부터 발생된다.
+
+|low-level Event|Description|
+|---|---|
+|Component|컴포넌트의 크기나 위치가 변경되었을 경우 발생|
+|Focus|키보드 입력을 받을 수 있는 상태가 되었을 때 혹은 그 반대의 경우에 발생|
+|Container|컴포넌트가 컨테이너에 추가되거나 삭제될 때 발생|
+|Key|사용자가 키를 눌럭을 때 또는 키보드 포커스를 가지고 있는 객체에서 발생|
+|Mouse|마우스 버튼이 클릭되었을 때 또는 마우스가 객체의 영역으로 돌어오거나 나갈 때 발생|
+|MouseMotion|마우스가 움직였을 때 발생|
+|MouseWheel|컴포넌트 위에서 마우스 휠을 움직이는 경우 발생|
+|Window|윈도우에 어떤 변화(열림, 닫힘, 아이콘화 등])가 있을 때 발생|
+
+### 의미적 이벤트
+
+- 일부 컴포넌트에서 발생한다.
+
+|Semantic Event|Description|
+|---|---|
+|Action|사용자가 어떤 동작을 하는 경우에 발생|
+|Caret|텍스트 삽입점이 동하거나 텍스트 선택이 변경되었을 경우 발생|
+|Change|일반적으로 객체의 상태가 변경되었을 경우 발생|
+|Document|문서의 상태가 변경되는 경우 발생|
+|Item|선택 가능한 컴포넌트에서 사용자가 선택을 하였을 때 발생|
+|ListSelection|리스트나 테이블에서 선택 부분이 변경되었을 경우에 발생|
+
+### 액션 이벤트
+
+- 버튼에서 발생하는 이벤트를 처리하려면 클래스를 정의할 때 ActionListener 인터페이스를 구현하여야 한다.
+- ActionListener에는 actionPerformed()라는 추상 메소드만이 정의되어 있다.
+- 이 메소드는 액션 이벤트가 발생할 때마다 호출된다.
+- 사용자가 버튼을 클릭하는 경우
+- 사용자가 메뉴 항목을 선택하는 경우
+- 사용자가 텍스트 필드에서 엔터키를 누르는 경우
+
+예제 10-1
+
+```java
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class ChangeBackground extends JFrame {
+    private JPanel panel;
+    private JButton buttonYellow;
+    private JButton buttonPink;
+
+    public ChangeBackground() {
+        setLocation(500, 500);
+        setSize(500, 200);
+        setTitle("버튼으로 배경색 변경하기");
+
+        panel = new JPanel();
+
+        buttonYellow = new JButton("노랑색");
+        buttonYellow.addActionListener(new MyListener());
+        panel.add(buttonYellow);
+
+        buttonPink = new JButton("분홍색");
+        buttonPink.addActionListener(new MyListener());
+        panel.add(buttonPink);
+
+        add(panel);
+
+        setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+    }
+
+    private class MyListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == buttonYellow) {
+                panel.setBackground(Color.yellow);
+            } else if (e.getSource() == buttonPink) {
+                panel.setBackground(Color.pink);
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        ChangeBackground c = new ChangeBackground();
+    }
+}
+```
+
 ## 10.4 키 이벤트
 
 ## 10.5 Mouse와 Mousemotion 이벤트
