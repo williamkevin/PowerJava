@@ -44,11 +44,9 @@
 1. Container를 생성한다.
 2. Component를 추가한다.
 
-### 프레임을 생성하는 방법 #1
+### 프레임을 생성하는 방법 #1 JFrame 객체를 이용하는 방법
 
-JFrame 객체를 이용하는 방법
-
-1. swing을 사용하기 위하여 javax.swing 패키지 안의 모든 클래스를 포함한다.
+1. swing을 사용하기 위하여 javax.swing 패키지 안의 JFrame Class를 import한다.
 2. new 연산자를 이용하여서 JFrame 객체를 생성한다.
 3. 프레임의 타이틀을 설정한다.
 4. 프레임 객체의 setSize() 메소드를 호출하여 프레임의 크기를 변경한다.
@@ -56,7 +54,7 @@ JFrame 객체를 이용하는 방법
 6. 프레임의 닫힘 버튼을 누르면 전체 프로그램이 종료되게 만든다.
 
 ```java
-import javax.swing.*;
+import javax.swing.JFrame;
 
 public class FrameTest {
     public static void main(String [] args) {
@@ -70,11 +68,9 @@ public class FrameTest {
 }
 ```
 
-### 프레임을 생성하는 방법 #2
+### 프레임을 생성하는 방법 #2 JFrame을 상속한 클래스의 객체를 이용하는 방법
 
-JFrame을 상속한 클래스의 객체를 이용하는 방법
-
-1. swing을 사용하기 위하여 javax.swing 패키지 안에 있는 JFrame 클래스를 포함한다.
+1. swing을 사용하기 위하여 javax.swing 패키지 안의 JFrame Class를 import한다.
 2. JFrame을 상속하여 MyFrame 클래스를 정의한다.
 3. MyFrame 클래스의 생성자에서 MyFrame 객체를 초기화한다.
 4. main()에서 MyFrame 객체를 생성한다. MyFrame 생성자가 호출되면서 모든 작업이 시작된다.
