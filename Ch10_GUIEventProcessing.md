@@ -281,11 +281,12 @@ public class EventTest5 extends JFrame {
 ## 10.3 스윙 컴포넌트의 이벤트
 
 - 거의 모든 스윙 컴포넌트들이 다양한 이벤트를 발생한다.
+- JComboBox Class는 ActionEvent, ItemEvent, PopupManuEvent를 발생한다. 개발자는 자신이 처리하고 싶은 이벤트를 선택해 리스너 클래스를 작성하여 주면 된다.
 - 스윙 컴포넌트가 발생하는 이벤트는 모든 컴포넌트가 공통적으로 지원하는 저수준 이벤트와 일부 컴포넌트만 지원하는 의미적 이벤트로 나눌 수 있다.
 
 ### 저수준 이벤트
 
-- 모든 컴포넌트에서 발생한다.
+- 저수준 이벤트는 모든 컴포넌트에서 발생한다.
 - 마우스나 키보드로부터 발생된다.
 
 |low-level Event|Description|
@@ -297,11 +298,13 @@ public class EventTest5 extends JFrame {
 |Mouse|마우스 버튼이 클릭되었을 때 또는 마우스가 객체의 영역으로 돌어오거나 나갈 때 발생|
 |MouseMotion|마우스가 움직였을 때 발생|
 |MouseWheel|컴포넌트 위에서 마우스 휠을 움직이는 경우 발생|
-|Window|윈도우에 어떤 변화(열림, 닫힘, 아이콘화 등])가 있을 때 발생|
+|Window|윈도우에 어떤 변화(열림, 닫힘, 아이콘화 등)가 있을 때 발생|
 
 ### 의미적 이벤트
 
 - 일부 컴포넌트에서 발생한다.
+- 가능하다는 저수준 이벤트보다는 의미적 이벤트를 처리하는 것이 코드를 강건하게 하고 이식성이 좋게 한다.
+- 의미적 이벤트의 경우 각 컴포넌트에 따라 발생할 수 있는 이벤트의 종류가 달라진다.
 
 |Semantic Event|Description|
 |---|---|
@@ -316,7 +319,7 @@ public class EventTest5 extends JFrame {
 
 - 버튼에서 발생하는 이벤트를 처리하려면 클래스를 정의할 때 ActionListener 인터페이스를 구현하여야 한다.
 - ActionListener에는 actionPerformed()라는 추상 메소드만이 정의되어 있다.
-- 이 메소드는 액션 이벤트가 발생할 때마다 호출된다.
+- actionPerformed() 메소드는 액션 이벤트가 발생할 때마다 호출된다.
 - 사용자가 버튼을 클릭하는 경우
 - 사용자가 메뉴 항목을 선택하는 경우
 - 사용자가 텍스트 필드에서 엔터키를 누르는 경우
@@ -371,6 +374,63 @@ public class ChangeBackground extends JFrame {
         ChangeBackground c = new ChangeBackground();
     }
 }
+```
+
+키패드 만들기
+
+```java
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import javax.swing.JTextField;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class KeyPad extends JFrame implements ActionListener {
+    private JPanel panel;
+    private JTextField txt;
+
+    public KeyPad() {
+        setLocation(600, 400);
+        setSize(500, 500);
+        setTitle("Key Pad");
+
+        txt = new JTextField();
+        add(txt, BorderLayout.NORTH);
+
+        panel = new JPanel();
+        panel.setLayout(new GridLayout(3, 3));
+        add(panel, BorderLayout.CENTER);
+
+        for ( int i = 1; i <= 9; i++) {
+            JButton btn = new JButton("" + i);
+            btn.addActionListener(this);
+            btn.setPreferredSize(new Dimension(100, 30));
+            panel.add(btn);
+        }
+        pack();
+
+        setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        String actionCommand = e.getActionCommand();
+        txt.setText(txt.getText() + actionCommand);
+    }
+
+    public static void main(String [] args) {
+        KeyPad f = new KeyPad();
+    }
+}
+```
+
+가위 바위 보 게임
+
+```java
 ```
 
 ## 10.4 키 이벤트
