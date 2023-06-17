@@ -1,4 +1,4 @@
-public class InnerClassTest {
+class OuterClass {
     private int value = 10;
 
     class InnerClass {

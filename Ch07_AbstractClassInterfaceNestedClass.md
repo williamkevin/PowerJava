@@ -339,12 +339,157 @@ public class StaticMethodTest2 {
 
 ## 7.5 중첩 클래스
 
+- 자바에서는 클래스 안에 클래스를 정의할 수 있다.
+- 외부 클래스(outer class): 내부에 클래스를 가지고 있는 클래스
+- 중첩 클래스(nested class): 클래스 내부에 포함되는 클래스
+
 ### 중첩 클래스의 종류
+
+|중첩 클래스||Description|
+|---|---|---|
+|정적 중첩 클래스||static이 붙어서 내장되는 클래스|
+|비정적 중첩 클래스|내부 클래스|클래스의 멤버처럼 선언되는 중첩 클래스|
+||지역 클래스|메소드의 몸체 안에서 선언되는 중첩 클래스|
+||익명 클래스|수식의 중간에서 선언되고 바로 객체화되는 클래스|
 
 ### 내부 클래스
 
+- 클래스 안에 클래스를 선언하는 경우
+- 내부 클래스의 접근 지정자는 public, private, protected, package(default)일 수 있다.
+- 내부 클래스는 외부 클래스의 인스턴스 변수와 메소드를 전부 사용할 수 있다. 이것이 내부 클래스의 최대 장점이다.
+- 내부 클래스도 외부 클래스의 인스턴스 멤버므로 외부 클래스 객체가 만들어져야 내부 클래스도 만들 수 있다.
+
+```java
+class OuterClass {
+    private int value = 10;
+
+    class InnerClass {
+        public void myMethod() {
+            System.out.println("외부 클래스의 private 변수 값: " + value);
+        }
+    }
+
+    OuterClass() {
+        InnerClass obj = new InnerClass();
+        obj.myMethod();
+    }
+}
+
+public class InnerClassTest {
+    public static void main(String [] args) {
+        OuterClass outer = new OuterClass();
+    }
+}
+```
+
 ### 지역 클래스
+
+- Local Class(지역 클래스): 메소드 안에 정의되는 클래스
+- 지역 클래스는 접근 제어 지정자를 가질 수 없으며 abstract 또는 final로만 지정할 수 있다.
+- 지역 클래스는 외부 클래스의 인스턴스 변수뿐만 아니라 final로 선언된 메소드의 지역 변수에도 접근할 수 있다.
+
+```java
+class LocalInner {
+    private int data = 30;
+
+    void display() {
+        final String msg = "현재의 데이터 값은 ";
+
+        class Local {
+            void printMsg() {
+                System.out.println(msg + data);
+            }
+        }
+
+        Local obj = new Local();
+        obj.printMsg();
+    }
+}
+
+public class localClassTest {
+    public static void main(String [] args) {
+        LocalInner obj = new LocalInner();
+        obj.display();
+    }
+}
+```
 
 ### 중첩 클래스를 사용하는 이유
 
+- 중첩 클래스는 외부 클래스의 멤버가 previate로 선언되어 있더라도 접근할 수 있다.
+- 중첩 클래스는 외부에서 보이지 않는다.
+- 익명 클래스는 콜백 메소드를 작성할 때 편리하다.
+
+```java
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Timer;
+
+
+public class CallBackTest {
+    public static void main(String [] args) {
+        class MyClass implements ActionListener {
+            public void actionPerformed(ActionEvent event) {
+                System.out.println("beep");
+            }
+        }
+
+        ActionListener listener = new MyClass();
+        Timer t = new Timer(1000, listener);
+        t.start();
+
+        for (int i = 0; i < 1000; i++) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) { }
+        }
+    }
+}
+```
+
 ## 7.6 익명 클래스
+
+- Anonymous clas(익명 클래스): 클래스 몸체는 정의되지만 이름이 없는 클래스
+- 익명 클래스는 클래스를 정의하면서 동시에 객체를 생성한다.
+- 이름이 없기 때문에 한 번만 사용이 가능하다.
+- 익명 클래스는 하나의 객체만 생성하면 되는 경우에 사용한다.
+- 익명 클래스는 부모 클래스의 상속을 받아서 작성하거나 인터페이스를 구현하여서 작성할 수 있다.
+- new 키워드 다음에 부모 크래스 이름이나 인터페이스 이름을 적어주면 된다.
+- 익명 클래스도 내부 클래스와 같이 필드와 다른 메소드들을 정의할 수 있지만 메소드 안에 정의되는 지역 변수 중에서 final로 선언된 변수만 사용이 가능하다.
+- GUI에서 이벤트 처리 객체는 하나만 생성되면 되기 때문에 익명 클래스는 주로 GUI의 이벤트 처리기를 구현하는 경우에 많이 사용된다.
+
+```java
+// 이름이 있는 클래스의 경우
+class Car extends Vehicle {
+    ...
+}
+Car obj = new Car();
+
+// 익명 클래스의 경우
+Vehicle obj = new Vehicle() { ... };
+```
+
+```java
+interface RemoteControl {
+    void turnOn();
+    void turnOff();
+}
+
+public class AnonymousClassTest1 {
+    public static void main(String args []) {
+        RemoteControl ac = new RemoteControl() {
+            public void turnOn() {
+                System.out.println("TV turn on");
+            }
+
+            public void turnOff() {
+                System.out.println("TV turn off");
+            }
+        };
+        ac.turnOn();
+        ac.turnOff();
+    }
+}
+```
+
+예제 7-7
