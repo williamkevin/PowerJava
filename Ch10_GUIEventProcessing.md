@@ -431,9 +431,112 @@ public class KeyPad extends JFrame implements ActionListener {
 가위 바위 보 게임
 
 ```java
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.JButton;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import java.util.Random;
+
+import java.awt.GridLayout;
+import java.awt.BorderLayout;
+
+public class RockPapperScissor extends JFrame implements ActionListener {
+    final int SCISSOR = 0;
+    final int ROCK = 1;
+    final int PAPPER = 2;
+
+    private JPanel panel;
+    private JLabel information, output;
+    private JButton rock, papper, scissor;
+
+    public RockPapperScissor() {
+        setLocation(600, 400);
+        setSize(500, 500);
+        setTitle("가위 바위 보");
+
+        panel = new JPanel();
+        panel.setLayout(new GridLayout(0, 3));
+
+        information = new JLabel("아래의 버튼 중에서 하나를 클릭하시오!");
+        output = new JLabel("Good Lurk");
+
+        rock = new JButton("ROCK");
+        papper = new JButton("PAPPER");
+        scissor = new JButton("SCISSOR");
+
+        rock.addActionListener(this);
+        papper.addActionListener(this);
+        scissor.addActionListener(this);
+
+        panel.add(rock);
+        panel.add(papper);
+        panel.add(scissor);
+
+        add(information, BorderLayout.NORTH);
+        add(panel, BorderLayout.CENTER);
+        add(output, BorderLayout.SOUTH);
+
+        setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+    }
+
+    public static void main(String [] args) {
+        RockPapperScissor f = new RockPapperScissor();
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        JButton b = (JButton)e.getSource();
+        int user = 0;
+
+        if (b.getText().equals("ROCK"))
+            user = ROCK;
+        else if (b.getText().equals("PAPPER"))
+            user = PAPPER;
+        else if (b.getText().equals("SCISSOR"))
+            user = SCISSOR;
+
+        Random random = new Random();
+        int computer = random.nextInt(3);
+
+        if (user == computer)
+            output.setText("무승부");
+        else if (user == (computer + 1) % 3)
+            output.setText("승리");
+        else
+            output.setText("패배");
+    }
+}
 ```
 
 ## 10.4 키 이벤트
+
+- key event(키 이벤트) : 사용자가 키보드를 이용하여 키를 누르거나 손을 떼는 경우에도 발생한다.
+
+- keyPressed 아벤트: 사용자가 키를 누르면 이벤트가 발생한다.
+- keyReleased 이벤트: 사용자가 키에서 손을 떼면 이벤트가 발생한다.
+- keyTyped 이벤트 : 입력된 유니코드 문자가 전송된다.
+
+- 사용자가 하나의 키를 누르면 3개의 키 이벤트가 순차적으로 발생한다.
+- keyPressed() -> ketTyped() -> keyReleased() 순으로 호출된다.
+
+### 포커스
+
+- 컴포넌트가 키 이벤트를 받으려면 반드시 포커스를 가지고 있어야 한다.
+- 포커스: 키 입력을 받을 권리
+
+### KeyListener 인터페이스
+
+### KeyEvent 클래스
+
+### getKeyChar()
+
+### getKeyCode()
+
+### isControlDown()
 
 ## 10.5 Mouse와 Mousemotion 이벤트
 

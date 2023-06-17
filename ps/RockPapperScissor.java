@@ -29,7 +29,7 @@ public class RockPapperScissor extends JFrame implements ActionListener {
         panel.setLayout(new GridLayout(0, 3));
 
         information = new JLabel("아래의 버튼 중에서 하나를 클릭하시오!");
-        output = new JLabel();
+        output = new JLabel("Good Lurk");
 
         rock = new JButton("ROCK");
         papper = new JButton("PAPPER");
@@ -72,8 +72,8 @@ public class RockPapperScissor extends JFrame implements ActionListener {
         if (user == computer)
             output.setText("무승부");
         else if (user == (computer + 1) % 3)
-            output.setText("인간: " + user + " 컴퓨터: " + computer + " 승리");
+            output.setText("승리");
         else
-            output.setText("인간: " + user + " 컴퓨터: " + computer + " 패배");
+            output.setText("패배");
     }
 }
