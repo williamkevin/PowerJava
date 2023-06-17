@@ -4,19 +4,36 @@
 
 ### 패키지의 개념
 
-- 패키지: 관련 있는 클래스들을 하나로 묶은 것
+- 패키지: 관련 있는 클래스들을 하나로 묶은 것. lang(<- String), util(<-ArrayList), awt, javax, swing, net, io, sql
+
+|Package of JAVA|Description|
+|---|---|
+|내장 패키지|자바에서 기본적으로 제공하는 패키지|
+|사용자 정의 패키지|사용자가 정의하는 패키지|
 
 ### 왜 패키지가 필요할까?
 
 1. 서로 관련된 클래스들을 하나의 단위로 모아 쉽게 유지 관리할 수 있다.
 2. 패키지 안에 있는 클래스들은 패키지 안에서만 사용할 수 있도록 선언하여 캡슐화를 구현할 수 있다.
-3. 패키지가 다르면 동일한 클래스의 이름을 사용할 수 있다.
+3. 패키지가 다르면 동일한 클래스의 이름을 사용할 수 있다.(이름 공간)
 
 ## 8.2 패키지 선언하기
 
 - 패키지 선언문은 반드시 소스 파일의 첫 번째 문장이어야 한다.
 - 여러 개의 소스 파일에 동일한 패키지 선언문을 넣을 수 있다.
-- 패키지는 계층 구조를 가질 수 있다.
+- 패키지는 계층 구조를 가질 수 있다. 패키지 안에 패키지를 넣을 수 있다.
+
+```java
+package graphics; // Circle Class를 graphics package에 속하게 하는 코드
+
+public class Circle {
+    double radius;
+}
+```
+
+```java
+package pkg1.pkg2; // pkg1 안에 pkg2를 넣을 수 있다.
+```
 
 ### 이클립스에서 패키지 만들기
 
@@ -26,16 +43,40 @@
 
 ## 8.3 패키지 사용하기
 
-1. 완전한 이름으로 참조 - 패키지 이름을 클래스 앞에 적는다. -> 클래스 이름만 가지고 클래스 참조 or import
-2. 패키지 안에서 우리가 원하는 클래스만을 포함한다.
-3. 패키지 안의 모든 클래스를 포함한다.
+```java
+graphics.Rectangle myRect = new graphics.Rectangle(); // 1. 완전한 이름으로 참조 - 패키지 이름을 클래스 앞에 적는다.
+
+import graphics.Rectangle; // 2. 패키지 안에서 우리가 원하는 클래스만을 포함한다.
+Rectangle myRect = new Rectangle();
+
+import graphics.*; // 3. 패키지 안의 모든 클래스를 포함한다.
+Rectangle myRect = new Rectangle();
+```
 
 ### 계층 구조의 패키지 포함하기
+
+```java
+import java.awt.*; // java.awt 패키지의 모든 클래스와 인터페이스를 가져온다. 하지만 하위 패키지의 클래스는 가져오지 않는다.
+import java.awt.font.*;
+```
 
 ### 정적 import 문장
 
 - 일반적으로 클래스 안에 정의된 정적 상수나 정적 메소드를 사용하는 경우에 클래스 이름을 앞에 적어야 한다.
 - 하지만 정적 import 문장을 사용하면 클래스의 이름을 생략할 수 있다.
+
+```java
+double r = Math.cos(Math.PI * theta);
+
+import static java.lang.Math.*;
+double r = cos(PI * theta);
+```
+
+예제 8-1
+
+```java
+
+```
 
 ## 8.4 클래스 파일은 언제 로드될까?
 
@@ -136,3 +177,7 @@ String s2 = "java";
 ### StringBuffer 클래스
 
 ## 8.9 기타 유용한 클래스
+
+## 8.10 예외 처리
+
+## 8.11 모듈
