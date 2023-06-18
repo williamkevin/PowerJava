@@ -180,4 +180,187 @@ String s2 = "java";
 
 ## 8.10 예외 처리
 
-## 8.11 모듈
+- 예외 : 배열의 인덱스가 배열의 한계를 넘거나 디스크에서 하드웨어 에러가 발생하는 등의 오류
+- 일반적으로 오류가 발생하면 프로그램이 종료된다.
+- 하지만 오류 처리를 통해 프로그램에서 오류를 감지하여 오류를 처리한 후에 계속 처리할 수 있다.
+
+### 예외 발생 예제
+
+```java
+public class DivideByAero {
+    public static void main(String [] args) {
+        int a = 10 / 0;
+        int b = 10;
+        System.out.println(a);
+
+        System.out.println(b);
+    }
+}
+
+/*
+Exception in thread "main" java.lang.ArithmeticException: / by zero
+        at DivideByAero.main(DivideByAero.java:3)
+ */
+```
+
+- 예외가 발생하는 즉시 프로그램이 종료되며 예외가 발생하는 지점 이후의 문장들이 실행되지 않는다.
+
+### try-catch 구조
+
+- JAVA에서는 try-catch 구조를 사용하여 예외를 처리한다.
+- 예외마다 하나의 catch 블록을 사용해야 한다.
+
+```java
+try {
+    // 예외가 발생할 수 있는 코드
+} catch (예외 클래스 변수) {
+    // 예외를 처리하는 코드
+}
+finally {
+    // try 블록이 끝나면 무조건 실행된다.(생략 가능))
+}
+```
+
+### 0으로 나누는 예외 처리
+
+```java
+import java.util.Scanner;
+
+public class DiviedbyZeroOK {
+    public static void main(String [] args) {
+        try {
+            int a = 10 / 0;
+            int b = 10 / 2;
+        } catch (ArithmeticException e) {
+            System.out.println("예외 발생");
+        }
+        finally {
+            System.out.println("계속 진행");
+        }
+    }
+}
+```
+
+### 예외의 종류
+
+- try-catch 구조를 사용하여 예외를 처리하려면 클래스 이름을 catch 블록에 적어야 하기 때문에 각종 예외를 나타내는 클래스의 이름을 알아야 한다.
+
+|Object||||
+|---|---|---|---|
+||Throwable|Error||
+||Exception|Runtime Exception|Arithmetic Exception|
+||||NullPointer Exception|
+||||ArrayIndex OutOfBounds Exception|
+
+- Error : 하드웨어의 오류로 자바 가상 기계 안에서 치명적인 오류가 발생하면 생성된다.
+- 애플리케이션은 이러한 오류를 보고할 수 있지만 예측하거나 복구할 수 없다. 컴파일러가 체크하지 않는다.
+- RuntimeException : 주로 프로그래밍 버그나 논리 오류에서 기인하는 오류
+- 애플리케이션은 이러한 예외를 잡아서 처리할 수 있지만 보다 합리적인 방법은 예외를 일으킨 버그를 잡는 것이다. RuntimeException도 예외 처리의 주된 대상이 아니다. 따라서 컴파일러가 체크하지 않는다.
+- unchecked exception(비체크 예외) : Error와 RuntimeException
+- checked exception(체크 예외) : 충분히 예견될 수 있고 회복할 수 있는 예외로 프로그램에서 반드시 처리해야 하는 예외
+
+|분류|Exception|Description|
+|---|---|---|
+|Checked-Exception|ClassNotFoundException|클래스가 발견되지 않았을 때|
+||IOException|입출력 오류|
+||illegalAccessException|클래스의 전근이 금지되었을 때|
+||NoSuchMethodException|메소드가 발견되지 않았을 때|
+||NoSuchFieldException|필드가 발견되지 않았을 때|
+||InterruptedException|스레드가 다른 스레드에 의하여 중단되었을 때|
+||FileNotFoundException|파일을 찾지 못했을 때|
+
+예제 8-2
+
+```java
+public class ArrayError {
+    public static void main(String [] args) {
+        int array [] = {10, 20, 30, 40, 50};
+        int i = 0;
+        
+        try {
+            for (i = 0; i <= array.length; i++)
+                System.out.println(array[i] + " ");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("인덱스 " + i + "는 사용할 수 없네요!");
+        }
+    }
+}
+```
+
+예외 8-3
+
+```java
+public class ExceptionTest3 {
+    public static void main(String [] args) {
+        try {
+            int num = Integer.parseInt("ABC");
+            System.out.println(num);
+        } catch (NumberFormatException e) {
+            System.out.println("NumberFormatException is arising");
+        }
+    }
+}
+```
+
+### Try-With-Resource(Java 7)
+
+```java
+import java.io.*;
+
+public class TryTest {
+    public static void main(String [] args) {
+        try (FileReader fr = new FileReader("hello.rtf")) {
+            char [] a = new char[50];
+            fr.read(a);
+            for (char c : a)
+                System.out.println(c);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### 예외 떠넘기기
+
+- 발생하는 모든 예외를 그 자리에서 처리하는 것은 상당한 양의 코드가 필요하고 반드시 사위 메소드가 그 예외를 처리하도록 해야 하는 경우가 있다.
+- 자신을 호출한 상위 메소드로 예외를 전달하는 경우도 있다.
+
+```java
+import java.io.*;
+
+public class ExceptionTest {
+    public static void main(String [] args) throws IOException {
+        FileReader fr = new FileReader("hello.rtf");
+        char [] a = new char[50];
+        fr.read(a);
+        for (char c : a)
+            System.out.println(c);
+    }
+}
+```
+
+## 8.11 모듈(Java 9)
+
+- Module : 여러 가지 자바 패키지들을 하나의 단위(모듈)에 포장할 수 있는 메커니즘
+
+### 직쏘 프로젝트
+
+- 직쏘 프로젝트의 목표 : 개발자가 라이브러리와 대규모 애플리케이션을 쉽게 구성하고 유지 관리이 할 수 있도록 하는 것
+
+### 모듈화의 장점
+
+1. 자신이 필요한 모듈만 골라서 실행 파일로 묶을 수 있다.
+2. 외부로 노출되는 패키지와 노출되지 않는 패키지를 지정할 수 있다.
+
+### 모듈의 정의
+
+- 모듈 : 패키지의 모임
+
+### 자바 모듈 컴파일
+
+### 모듈 실행
+
+### 독립 실행형 애플리케이션으로 자바 모듈 패키징
+
+### 독립 실행형 애플리케이션 실행

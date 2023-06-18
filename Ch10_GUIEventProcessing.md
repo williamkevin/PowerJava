@@ -42,24 +42,19 @@ public class MyFrame extends JFrame {
 
 ### 내부 클래스가 이벤트를 처리하는 방법
 
-1. 이벤트를 처리하는 클래스들이 모여 있는 패키지를 java.awt.event를 포함한다.
-2. 리스너 인터페이스를 구현하는 클래스를 내부 클래스로 하여 작성한다.
-    - 내부 클래스: 다른 클래스 안에 위치하는 클래스로서 외부 클래스의 필드들을 자유롭게 사용할 수 있다.
-3. 이벤트 리스너 객체를 생성하고 addActionListener()를 이용하여 버튼에 리스너 객체를 등록한다.
-
 ```java
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.BorderLayout;
-import java.awt.event.*;
+import java.awt.event.*; // 1. 이벤트를 처리하는 클래스들이 모여 있는 패키지를 java.awt.event를 포함한다.
 
 public class EventTest1 extends JFrame {
     private JButton button;
     private JLabel label;
     private int counter = 0;
 
-    class MyListener implements ActionListener {
+    class MyListener implements ActionListener { // 2. 리스너 인터페이스를 구현하는 클래스를 내부 클래스로 작성한다.(내부 클래스: 다른 클래스 안에 위치하는 클래스로서 외부 클래스의 필드들을 자유롭게 사용할 수 있다.)
         public void actionPerformed(ActionEvent e) {
             counter++;
             label.setText("현재의 카운터 값: " + counter);
@@ -75,7 +70,7 @@ public class EventTest1 extends JFrame {
         button = new JButton("증가");
         label = new JLabel("현재의 카운터 값: " + counter);
 
-        button.addActionListener(new MyListener());
+        button.addActionListener(new MyListener()); // 3. 이벤트 리스너 객체를 생성하고 addActionListener()를 이용하여 버튼에 리스너 객체를 등록한다.
 
         add(label, "Center");
         add(button, "East");
@@ -140,7 +135,6 @@ public class EventTest2 extends JFrame {
 
 ### 프레임 클래스가 이벤트를 처리하는 방법
 
-- 프레임 클래스가 JFrame을 상속받으면서 동시에 ActionListener 인터페이스도 구현하는 방법
 - 비교적 많이 사용된다.
 
 ```java
@@ -151,7 +145,7 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class EventTest3 extends JFrame implements ActionListener {
+public class EventTest3 extends JFrame implements ActionListener { // 프레임 클래스가 JFrame을 상속받으면서 동시에 ActionListener 인터페이스도 구현하는 방법
     private JButton button;
     private JLabel label;
     private int counter;
@@ -187,7 +181,6 @@ public class EventTest3 extends JFrame implements ActionListener {
 
 ### 익명 클래스를 사용하는 방법
 
-- 익명 클래스: 이름이 없는 클래스를 작성하여 바로 한 번만 사용한다.
 - 많이 사용된다. 특히 안드로이드 프로그램에서 주로 사용된다.
 
 ```java
@@ -213,7 +206,7 @@ public class EventTest4 extends JFrame {
         button = new JButton("증가");
         label = new JLabel("현재 카운터 값은:   " + counter);
 
-        button.addActionListener(new ActionListener() {
+        button.addActionListener(new ActionListener() { // 익명 클래스: 이름이 없는 클래스를 작성하여 바로 한 번만 사용한다.
             public void actionPerformed(ActionEvent e) {
                 counter++;
                 label.setText("증가된 카운터 값은: " + counter);
@@ -234,9 +227,6 @@ public class EventTest4 extends JFrame {
 ```
 
 ### 람다식을 이용하는 방법
-
-- Lambda expression: 이름이 없는 메소드
-- Lambda expression은 한 번만 사용되고 메소드의 길이가 짧은 경우에 유용하다.
 
 ```java
 import javax.swing.JFrame;
@@ -259,7 +249,7 @@ public class EventTest5 extends JFrame {
         button = new JButton("증가");
         label = new JLabel("현재 카운터 값은: " + counter);
 
-        button.addActionListener(e -> {
+        button.addActionListener(e -> { // Lambda expression은 한 번만 사용되고 메소드의 길이가 짧은 경우에 유용하다. (Lambda expression: 이름이 없는 메소드)
             counter++;
             label.setText("현재 카운터 값은: " + counter);
         });
