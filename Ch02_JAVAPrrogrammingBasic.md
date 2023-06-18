@@ -31,7 +31,7 @@
 - 상수: 프로그램이 실행되는 동안 값이 변하지 않는 수 또는 변경 불가능한 수
 - 키워드 final
 
-```
+```java
 final double PI = 3.141592;
 ```
 
@@ -39,12 +39,12 @@ final double PI = 3.141592;
 
 - java 10부터 도입
 
-```
+```java
 int age = 22;
 String name = "Kim";
 ```
 
-```
+```java
 var age = 22; // age는 int 타입으로 추론
 var name = "Kim"; // name은 String 타입으로 추론
 ```
@@ -192,7 +192,7 @@ public class Practice {
 - Scanner 클래스: 자바 애플리케이션이 사용자로부터 쉽게 정수나 문자열을 받을 수 있도록 자바 패키지에서 제공하는 클래스
 - Scanner 클래스는 키보드로부터 바이트 값을 받아서 분리자를 이용하여 각 바이트들을 token으로 분리한다. 특정한 지정('', '\n', '\t')가 없으면 공백문자이다.
 
-Scanner 클래스는 다양한 입력 메소드를 제공한다. 
+Scanner 클래스는 다양한 입력 메소드를 제공한다.
 
 ```java
 import java.util.Scanner;
