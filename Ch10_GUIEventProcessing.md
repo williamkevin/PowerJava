@@ -520,13 +520,168 @@ public class RockPapperScissor extends JFrame implements ActionListener {
 
 ### KeyListener 인터페이스
 
+- 어떤 클래스가 키보드 이벤트를 처리하려면 KeyListener 인터페이스를 구현해야 한다.
+- KeyListener 인터페이스는 다음과 같은 추상 메소드를 가지고 있다.
+- 개발자는 자신이 원하는 추상 메소드를 구현하여서 사용하면 된다.
+
+```java
+public class MyListener implements KeyListener {
+    public void keyPressed(KeyEvent e) { }
+    public void keyReleased(KeyEvent e) { }
+    public void keyTyped(KeyEvent e) { }
+}
+```
+
 ### KeyEvent 클래스
+
+- KeyEvent 객체 안에 있는 메소드
+
+|Method|Description|
+|---|---|
+|int getKeyChar()|KeyEvent에 들어 있는 글자를 반환한다.|
+|int getKeyCode()|KeyEvent에 들어 있는 키코드를 반환한다. 키코드란 글자가 아니라 키보드 자판의 각각의 키를 가리키는 상수다. 예를 들어 Escape 키의 키코드는 VK_ESCAPE로 정의되어 있다.|
+|boolean isActionKey()|이벤트를 발생시킨 키가 액션 키이면 true를 반환한다. 액션 키란 Cut, Copy, Paste, Page Up, Caps Lock, 화살표와 function 키를 의미한다.|
 
 ### getKeyChar()
 
+- getKeyChar() : 사용자가 입력한 문자를 유니코드로 반환한다.
+
+```java
+// c 글자가 누려지는 순간 카운터를 증가시키는 코드
+public void keyPressed(KeyEvent e) {
+    if (e.getKeyCode() == 'c')
+        count++;
+}
+```
+
 ### getKeyCode()
 
+- getKeyCode() : 글자가 아니고 키보드의 어떤 자판이 눌렀는지 알고 싶을 때 사용한다.
+
+```java
+// 사용자가 누른 키가 Enter 키인지 판단하는 코드
+public void keyPressed(KeyEvent e) {
+    if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+        // 처리할 내용
+    }
+}
+```
+
 ### isControlDown()
+
+```java
+// 사용자가 컨트롤 키를 누르고 있는지 알 수 있는 코드
+public void keyPressed(KeyEvent e) {
+    if (e.isControlDown()) {
+        // 처리할 내용
+    }
+}
+```
+
+예제 10-2
+
+```java
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+
+import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
+
+public class KeyEventTest extends JFrame implements KeyListener {
+    public KeyEventTest() {
+        setLocation(600, 400);
+        setSize(300, 200);
+        JTextField tf = new JTextField(20);
+        tf.addKeyListener(this);
+        add(tf);
+        setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    public void keyTyped(KeyEvent e) {
+        display(e, "KeyTyped ");
+    }
+
+    public void keyPressed(KeyEvent e) {
+        display(e, "KeyPressed");
+    }
+
+    public void keyReleased(KeyEvent e) {
+        display(e, "Key Released ");
+    }
+
+    protected void display(KeyEvent e, String s) {
+        char c = e.getKeyChar();
+        int keyCode = e.getKeyChar();
+        String modifiers = e.isAltDown() + " " + e.isControlDown() + " " + e.isShiftDown();
+        System.out.println(s + " " + c + " " + keyCode + " modifiers");
+    }
+
+    public static void main(String [] args) {
+        KeyEventTest f = new KeyEventTest();
+    }
+}
+```
+
+예제 10-3 자동차 움직이기
+
+```java
+import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import javax.swing.ImageIcon;
+
+public class MoveCar extends JFrame {
+    int img_x = 150, img_y = 150;
+    JPanel panel;
+    JButton button;
+    ImageIcon icon;
+
+    public MoveCar() {
+        setLocation(600, 400);
+        setSize(600, 300);
+        setTitle("Example 10-3");
+
+        icon = new ImageIcon("Ram.jpeg");
+        button = new JButton("");
+        button.setIcon(icon);
+        button.setLocation(img_x, img_y);
+        button.setSize(200, 100);
+
+        panel = new JPanel();
+        panel.setLayout(null);
+
+        panel.add(button);
+        panel.requestFocus();
+        panel.setFocusable(true);
+        panel.addKeyListener(new KeyListener() {
+            public void keyPressed(KeyEvent e) {
+                int keycode = e.getKeyCode();
+                switch (keycode) {
+                    case KeyEvent.VK_UP: img_y -= 10; break;
+                    case KeyEvent.VK_DOWN: img_y += 10; break;
+                    case KeyEvent.VK_LEFT: img_x -= 10; break;
+                    case KeyEvent.VK_RIGHT: img_x += 10; break;
+                }
+
+                button.setLocation(img_x, img_y);
+            }
+
+            public void keyReleased(KeyEvent arg0) { }
+            public void keyTyped(KeyEvent arg0) { }
+        });
+
+        add(panel);
+        setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+    }
+    
+    public static void main(String [] args) {
+        MoveCar f = new MoveCar();
+    }
+}
+```
 
 ## 10.5 Mouse와 Mousemotion 이벤트
 
