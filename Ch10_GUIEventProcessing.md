@@ -685,4 +685,287 @@ public class MoveCar extends JFrame {
 
 ## 10.5 Mouse와 Mousemotion 이벤트
 
+- Mouse Event(마우스 이벤트) : 사용자가 마우스 버튼을 누르거나 마우스를 움직일 때 발생한다.
+- 사용자가 버튼을 누르거나 메뉴를 선택할 때는 액션 이벤트로 처리하면 되기 때문에 마우스 이벤트를 처리할 필요가 없다.
+- 마우스에서 발생하는 이벤트 8가지 : MouseListener 5가지 + MouseMotionListener 2가지 + MouseWheelListener 1가지
+- MouseListener + MouseEvent : 마우스 버튼 클릭 처리
+- MouseMotionListener + MouseMotionEvent : 마우스 위치
+
+### MouseListener Interface
+
+```java
+// MouseListener Interface는 다음과 같은 추상 메소드를 가지고 있다.
+public class MyListener implements MouseListener {
+    public void mousePressed(MouseEvent e) { } // 사용자가 컴포넌트를 클릭한 경우에 호출된다.
+    public void mouseReleased(MouseEvent e) { } // 마우스 컴포넌트 위에서 떼어지면 호출된다.
+    public void mouseEntered(MouseEvent e) { } // 마우스 커서가 컴포넌트로 들어가면 호출된다.
+    public void mouseExited(MouseEvent e) { } // 마우스 커서가 컴포넌트에서 나가면 호출된다.
+    public void mouseClicked(MouseEvent e) { } // 마우스 컴포넌트 위에서 눌려지면 호출된다.
+}
+```
+
+- 사용자가 마우스 버튼을 누르면 mousePressed()가 호출되고 마우스 버튼에서 손을 떼면 mouseReleased()가 호출되며 이어서 mouseCliecked()가 호출된다.
+- 마우스의 현재 좌표는 e.getX()와 e.getY()를 호출하면 알 수 있다.
+
+### MouseMotionListener Interface
+
+- 마우스가 이동할 때 좌표를 받으려면 MouseMotionListener를 구현한다.
+
+```java
+public class MyClass implements MouseMotionListener {
+    public void mouseDragged(MouseEvent e) { } // 마우스가 눌린 채로 이동하면 호출된다.
+    public void mouseMoved(MouseEvent e) { } // 마우스가 그냥 이동하면 호출된다.
+}
+```
+
+- 마우스의 현재 좌표는 getX(), getY()를 호출하여 알 수 있다.
+- 드래그 시에 mouseMoved()와 mouseCliecked()는 호출되지 않는다.
+
+### MouseEvent 객체
+
+|MouseEvent Class's Method|Description|
+|---|---|
+|int getClickCount()|빠른 연속적인 클릭의 횟수를 반환한다.|
+|int getX(), int getY(), Point getPoint()|이벤트가 발생했을 당시의 (x, y) 위치를 반환한다. 위치는 컴포넌트에 상대적이다.|
+|int getXOnScreen(), int getYOnScreen(), int getLocationOnScreen()|절대 좌표 값 (x, y)을 반환한다. 이들 좌표값은 화면에 상대적이다.|
+|int getButton()|어떤 마우스 버튼의 상태가 변경되었는지를 반환한다. NOBUTTON, BUTTON1, BUTTON2, BUTTON3 중에 하나다.|
+
+예제 10-4 마우스 이벤트 정보 출력하기
+
+```java
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.awt.Component;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+
+
+public class MouseEventTest extends JFrame implements MouseListener, MouseMotionListener {
+    public MouseEventTest() {
+        setLocation(500, 400);
+        setSize(600, 600);
+        setTitle("Mouse Event");
+
+        javax.swing.JPanel panel = new JPanel();
+        panel.addMouseListener(this);
+        panel.addMouseMotionListener(this);
+
+        add(panel);
+
+        setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+    }
+
+    protected void display(String s, MouseEvent e) {
+        System.out.println(s + " X = " + e.getX() + " Y = " + e.getY());
+    }
+
+    public void mousePressed(MouseEvent e) {
+        display("Mouse pressed (# of clicks: " + e.getClickCount() + ")", e);
+    }
+
+    public void mouseReleased(MouseEvent e) {
+        display("Mouse released (# of clicks: " + e.getClickCount() + ")", e);
+    }
+
+    public void mouseEntered(MouseEvent e) {
+        display("Mouse entered", e);
+    }
+
+    public void mouseExited(MouseEvent e) {
+        display("Mouse exited", e);
+    }
+
+    public void mouseClicked(MouseEvent e) {
+        display("Mouse clicked (# of clicks: )" + e.getClickCount() + ")", e);
+    }
+
+    public void mouseDragged(MouseEvent e) {
+        display("Mouse dragged", e);
+    }
+
+    public void mouseMoved(MouseEvent e) {
+        display("Mouse Moved", e);
+    }
+
+    public static void main(String [] args) {
+        MouseEventTest f = new MouseEventTest();
+    }
+}
+```
+
+예제 10-5 마우스로 자동차 이동하기
+
+```java
+// Inner Class
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseEvent;
+
+public class MoveCar3 extends JFrame {
+    private int img_x = 150, img_y = 150;
+    JPanel panel;
+    JLabel label;
+    ImageIcon icon;
+
+    private class MyMouseListener implements MouseListener {
+        public void mousePressed(MouseEvent e) {
+            img_x = e.getX();
+            img_y = e.getY();
+            label.setLocation(img_x, img_y);
+        }
+
+        public void mouseReleased(MouseEvent e) { }
+        public void mouseClicked(MouseEvent e) { }
+        public void mouseEntered(MouseEvent e) { }
+        public void mouseExited(MouseEvent e) { }
+    }
+
+    public MoveCar3() {
+        setLocation(500, 400);
+        setSize(600, 600);
+        setTitle("Example 10-5 by inner class");
+
+        icon = new ImageIcon("Ram.jpeg");
+        label = new JLabel();
+        label.setIcon(icon);
+        label.setLocation(img_x, img_y);
+        label.setSize(200, 100);
+
+        panel = new JPanel();
+        panel.setLayout(null);
+        panel.add(label);
+        panel.requestFocus();
+        panel.setFocusable(true);
+        panel.addMouseListener(new MyMouseListener());
+
+        add(panel);
+        setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+    }
+
+    public static void main(String [] args) {
+        MoveCar3 car = new MoveCar3();
+    }
+}
+```
+
+```java
+// Anonymous Class
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseEvent;
+
+public class MoveCar2 extends JFrame {
+    private int img_x = 150, img_y = 150;
+    JPanel panel;
+    JLabel label;
+    ImageIcon icon;
+
+    public MoveCar2() {
+        setLocation(500, 400);
+        setSize(600, 600);
+        setTitle("Example 10-5 by anoymous class");
+
+        icon = new ImageIcon("Ram.jpeg");
+        label = new JLabel();
+        label.setIcon(icon);
+        label.setLocation(img_x, img_y);
+        label.setSize(200, 100);
+
+        panel = new JPanel();
+        panel.setLayout(null);
+        panel.add(label);
+        panel.requestFocus();
+        panel.setFocusable(true);
+        panel.addMouseListener(new MouseListener() {
+            public void mousePressed(MouseEvent e) {
+                img_x = e.getX();
+                img_y = e.getY();
+                label.setLocation(img_x, img_y);
+            }
+
+            public void mouseReleased(MouseEvent e) { }
+            public void mouseEntered(MouseEvent e) { }
+            public void mouseExited(MouseEvent e) {}
+            public void mouseClicked(MouseEvent e) { }
+        });
+
+        add(panel);
+        setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+    }
+
+    public static void main(String [] args ) {
+        MoveCar2 car = new MoveCar2();
+    }
+}
+```
+
+예제 10-6
+
+```java
+
+```
+
 ## 10.6 이벤트 클래스
+
+- Adapter Class(어탭터 클래스) : Interface를 구현해놓은 Class
+- 어댑터 클래스를 상속받아서 원하는 메소드만을 오버라이드(재정의)하는 것이 가능해진다.
+
+```java
+// MouseAdapter Class
+public abstract class MouseAdapter implements MouseListener, MouseWheelListener, MouseMotionListener {
+    public void MousePressed(MouseEvent e) { }
+    public void MouseReleased(MouseEvent e) { }
+    public void MouseClicked(MouseEvent e) { }
+    public void MouseEntered(MouseEvent e) { }
+    public void MouseExited(MouseEvent e) { }
+
+    public void MouseDragged(MouseEvent e) { }
+    public void MouseMoved(MouseEvent e) { }
+
+    public void MouseWheelEvent(MouseEvent e) { }
+}
+```
+
+예제 10-7 마우스 드래그 이벤트 출력하기
+
+```java
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseAdapter;
+
+public class MouseDrag extends JFrame {
+    JPanel panel;
+    public MouseDrag() {
+        setLocation(500, 400);
+        setSize(400, 400);
+        setTitle("Example 10-7");
+
+        panel = new JPanel();
+        panel.addMouseListener(new MouseAdapter() {
+            public void mouseDragged(MouseEvent e) {
+                System.out.println(e);
+            }
+        });
+
+        add(panel);
+        setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+    }
+
+    public static void main(String [] args) {
+        MouseDrag md = new MouseDrag();
+    }
+}
+```

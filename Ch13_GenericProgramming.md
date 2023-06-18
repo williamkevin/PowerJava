@@ -441,7 +441,7 @@ map.forEach((key, value) -> {
 - FIFO(first-in-first-out)
 - 자바에서 큐sms Queue interface로 정의되며 이 Queue 인터페이스를 구현한 3개의 클래스가 주어진다. ArrauDeque, LinkedList, PriorityQueue
 
-### Queue 메소
+### Queue 메소드
 
 |Queue Method|Description|
 |---|---|
@@ -450,10 +450,211 @@ map.forEach((key, value) -> {
 |remove()|큐의 처음에 있는 원소를 제거하고 가져온다. 만약 원소가 없으면 NoSuchElementException이 발생한다.|
 |poll()|큐의 처음에 있는 원소를 제거하고 가져온다. 만약 원소가 없으면 null을 반환한다.|
 |element()|큐의 처음에 있는 원소를 반환한다. 큐가 비어있을 경우 NoSuchElementException이 발생한다.|
-|peak()|큐의 처음에 있는 원소를 반환한다. 큐가 비어있을 경우 null을 반환한다.|
+|peek()|큐의 처음에 있는 원소를 반환한다. 큐가 비어있을 경우 null을 반환한다.|
+
+### 예제
+
+```java
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class QueueTest {
+    public static void main(String [] args) {
+        Queue<Integer> q = new LinkedList<Integer>();
+
+        for (int i = 0; i < 5; i++) {
+            q.add(i);
+            System.out.println("add 이후 " + q);
+        }
+
+        for (int i = 0; i < 10; i++) {
+            q.poll();
+            System.out.println(q);
+        }
+
+        for (int i = 5; i < 10; i++) {
+            q.offer(i);
+            System.out.println("offer 이후 : " + q);
+        }
+
+        System.out.println("peak : " + q.peek());
+
+        for (int i = 0; i < 5; i++) {
+            q.remove();
+            System.out.println("remove 이후 : " + q);
+        }
+
+        System.out.println("element : " + q.element());
+    }
+}
+```
+
+### 우선순위 큐
+
+- PriorityQueue는 원소들이 무작위로 삽입되더라도 정렬된 상태로 원소들을 추출한다.
+- 하지만 항상 정렬된 상태로 원소들을 저장하고 있는 것은 아니다.
+
+```java
+import java.util.PriorityQueue;
+
+public class PriorityQue {
+    public static void main(String [] args) {
+        PriorityQueue<Integer> q = new PriorityQueue<Integer>();
+
+        q.add(3);
+        q.offer(2);
+        q.add(1);
+        q.remove();
+
+        System.out.println(q); // [2, 3]
+    }
+}
+```
 
 ## 13.9 Collections 클래스
 
+## 정렬
+
+- 정렬 : 데이터를 어떤 기준에 의하여 순서대로 나열하는 것
+- 정렬 알고리즘은 퀵 정렬, 합병 정렬, 히프 정렬 중 합병 정렬을 이용한다.
+- Collection 클래스의 sort() 메소드는 List Interface를 구현하는 Collection에 대해 정렬을 수행한다.
+- list에 들어 있는 원소가 String 타입이라면 알파벳 순서대로 정렬되며 Date 원소들이라면 시간적인 순서로 정렬된다.
+
+예제 13-8
+
+```java
+import java.util.Collections;
+import java.util.List;
+import java.util.Arrays;
+
+public class Sort {
+    public static void main(String [] args) {
+        String[] s = {"i", "am", "iron", "man"};
+
+        System.out.println(s);
+
+        List<String> list = Arrays.asList(s);
+
+        System.out.println(list);
+
+        Collections.sort(list);
+
+        System.out.println(list);
+    }
+}
+/*
+[Ljava.lang.String;@1dbd16a6
+[i, am, iron, man]
+[am, i, iron, man]
+ */
+```
+
+예제 13-9
+
+```java
+import java.util.Collections;
+import java.util.List;
+import java.util.Arrays;
+import java.lang.Comparable;
+
+class Student implements Comparable<Student> {
+    private int number;
+    private String name;
+
+    public Student(int number, String name) {
+        this.number = number;
+        this.name = name;
+    }
+
+    public String toString() { return name; }
+
+    public int compareTo(Student s) {
+        return s.number - number;
+    }
+}
+
+public class SortTest {
+    public static void main(String [] args) {
+        Student array [] = {
+            new Student(10, "김철수"),
+            new Student(20, "이철수"),
+            new Student(30, "박철수")
+        };
+
+        System.out.println(array);
+
+        List<Student> list = Arrays.asList(array);
+        
+        System.out.println(list);
+
+        Collections.sort(list);
+
+        System.out.println(list);
+
+        Collections.sort(list, Collections.reverseOrder());
+
+        System.out.println(list);
+    }
+}
+```
+
 ### 섞기
 
+- Shuffling(섞기) : 리스트에 존재하는 정렬을 파괴하여서 원소들의 순서를 랜덤하게 만든다.
+
+```java
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class Shuffle {
+    public static void main(String [] args) {
+        List<Integer> list = new ArrayList<Integer>();
+
+        for (int i = 0; i < 10; i++) {
+            list.add(i);
+        }
+
+        Collections.shuffle(list);
+
+        System.out.println(list);
+
+        Collections.sort(list);
+
+        System.out.println(list);
+    }
+}
+/*
+[6, 8, 9, 3, 1, 4, 2, 7, 5, 0]
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+ */
+```
+
 ### 탐색
+
+- 탐색 : 리스트 안에서 원하는 원소를 찾는 것
+- 리스트가 정렬되어 있지 않다면 처음부터 모든 원소를 방문한다.(선형 탐색)
+- 리스트가 정렬되어 있다면 중간에 있는 원소와 먼저 비교한다.(이진 탐색)
+- binarySearch() : 리스트가 정렬되어 있다고 가정하고 정렬된 리스트에서 지정된 원소를 이진 탐색한다. 리스트와 탐색할 원소를 받는다.
+- binarySearch()의 반환값이 양수면 탐색이 성공한 객체의 위치이며 음수이면 탐색이 실패한 것이다.
+
+예제 13-10 숫자들의 리스트 탐색하기
+
+```java
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class Search {
+    public static void main(String [] args) {
+        List<Integer> list = new ArrayList<Integer>();
+
+        for (int i = 0; i <= 100; i++) {
+            list.add(i);
+        }
+
+        System.out.println("탐색의 반환값: " + Collections.binarySearch(list, 50)); // 50
+
+    }
+}
+```
